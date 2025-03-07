@@ -30,9 +30,12 @@ export default abstract class BotHandler {
 	}
 
 	async process(update: Update): Promise<void> {
-		console.debug('update info', update);
+		console.debug('!!!update info', update);
+
 		this.bot.on('message', (message: Message) => {
-			console.log('bot.onMessage');
+			console.log('!!!bot.onMessage');
+			// 👇👇👇here not working ... and always pending in network and I have not idea
+			fetch('http://localhost:9000/bot_onMessage').then(console.log).catch(console.error);
 			this.commandParse(message).then(console.log).catch(console.error);
 		});
 		await this.bot.processUpdate(update);

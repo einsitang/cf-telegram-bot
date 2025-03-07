@@ -24,7 +24,7 @@ export default {
 			const chat = botUpdate.message?.chat;
 			let botHandler: BotHandler;
 			if (from?.id == env.CREATOR_USER_ID || chat?.id == env.CREATOR_USER_ID) {
-				// 发送 / 接收 自 创建者的消息
+				// 发送 / 接收 自 创建者的消息 send or receive from creator
 				botHandler = new AdminBotHandler(bot);
 			} else {
 				botHandler = new ClientBotHandler(bot);
@@ -43,10 +43,6 @@ export default {
 
 			const action = url.searchParams.get('settings');
 			if (action === 'setWebhook') {
-				await bot.sendMessage({
-					chat_id: 7321288148,
-					text: 'hello world send by get method request',
-				});
 				const webhookUrl = new URL(url.origin);
 				webhookUrl.pathname = env.TELEGRAM_API_TOKEN;
 				console.log('set webHookUrl', webhookUrl.toString());

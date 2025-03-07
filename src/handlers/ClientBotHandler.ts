@@ -7,6 +7,7 @@ export default class ClientBotHandler extends BotHandler {
 		this.onCommand('/test', async (message: Message) => {
 			console.log('/test', message);
 			// 👇👇👇here not working ... and always pending in network and I have not idea
+			console.log('begin command /test : fetch url -> http://localhost:9000/test');
 			await fetch('http://localhost:9000/test');
 			// await this.bot.sendMessage({
 			// 	chat_id: message.chat.id,
